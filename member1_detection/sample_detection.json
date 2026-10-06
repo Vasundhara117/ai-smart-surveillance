@@ -1,0 +1,32 @@
+[
+  {
+    "frame": 1,
+    "timestamp": 0.0,
+    "objects": [
+      {
+        "id": 1,
+        "class": "person",
+        "confidence": 0.91,
+        "bbox": [120, 80, 250, 400]
+      },
+      {
+        "id": 2,
+        "class": "car",
+        "confidence": 0.87,
+        "bbox": [310, 180, 560, 360]
+      }
+    ]
+  },
+  {
+    "frame": 2,
+    "timestamp": 0.033,
+    "objects": [
+      {
+        "id": 1,
+        "class": "person",
+        "confidence": 0.9,
+        "bbox": [123, 81, 253, 401]
+      }
+    ]
+  }
+]
