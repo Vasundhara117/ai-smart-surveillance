@@ -1,0 +1,194 @@
+[
+  {
+    "timestamp": 2.5,
+    "person_id": 1,
+    "activity": "normal_walking",
+    "confidence": 0.95,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 5.1,
+    "person_id": 2,
+    "activity": "standing",
+    "confidence": 0.92,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 8.4,
+    "person_id": 3,
+    "activity": "loitering",
+    "confidence": 0.88,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 12.4,
+    "person_id": 7,
+    "activity": "loitering",
+    "confidence": 0.89,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 15.0,
+    "person_id": 4,
+    "activity": "walking",
+    "confidence": 0.96,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 18.2,
+    "person_id": 5,
+    "activity": "unattended_bag",
+    "confidence": 0.91,
+    "suspicious": true,
+    "severity": "critical"
+  },
+  {
+    "timestamp": 22.8,
+    "person_id": 7,
+    "activity": "loitering",
+    "confidence": 0.93,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 26.5,
+    "person_id": 6,
+    "activity": "running_suspiciously",
+    "confidence": 0.87,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 31.0,
+    "person_id": 8,
+    "activity": "fighting",
+    "confidence": 0.94,
+    "suspicious": true,
+    "severity": "critical"
+  },
+  {
+    "timestamp": 34.2,
+    "person_id": 9,
+    "activity": "fighting",
+    "confidence": 0.92,
+    "suspicious": true,
+    "severity": "critical"
+  },
+  {
+    "timestamp": 39.5,
+    "person_id": 10,
+    "activity": "normal_walking",
+    "confidence": 0.97,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 44.1,
+    "person_id": 11,
+    "activity": "trespassing",
+    "confidence": 0.86,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 48.7,
+    "person_id": 12,
+    "activity": "vandalism",
+    "confidence": 0.89,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 53.0,
+    "person_id": 3,
+    "activity": "loitering",
+    "confidence": 0.85,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 58.6,
+    "person_id": 13,
+    "activity": "talking",
+    "confidence": 0.98,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 64.2,
+    "person_id": 14,
+    "activity": "forced_entry",
+    "confidence": 0.95,
+    "suspicious": true,
+    "severity": "critical"
+  },
+  {
+    "timestamp": 69.0,
+    "person_id": 15,
+    "activity": "normal_walking",
+    "confidence": 0.94,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 74.3,
+    "person_id": 7,
+    "activity": "loitering",
+    "confidence": 0.90,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 80.1,
+    "person_id": 6,
+    "activity": "running_suspiciously",
+    "confidence": 0.84,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 85.9,
+    "person_id": 11,
+    "activity": "trespassing",
+    "confidence": 0.91,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 91.4,
+    "person_id": 2,
+    "activity": "standing",
+    "confidence": 0.96,
+    "suspicious": false,
+    "severity": "low"
+  },
+  {
+    "timestamp": 96.8,
+    "person_id": 12,
+    "activity": "vandalism",
+    "confidence": 0.93,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 102.3,
+    "person_id": 5,
+    "activity": "unattended_bag",
+    "confidence": 0.89,
+    "suspicious": true,
+    "severity": "critical"
+  },
+  {
+    "timestamp": 108.0,
+    "person_id": 1,
+    "activity": "normal_walking",
+    "confidence": 0.99,
+    "suspicious": false,
+    "severity": "low"
+  }
+]
