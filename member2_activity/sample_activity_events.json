@@ -1,0 +1,34 @@
+[
+  {
+    "timestamp": 2.0,
+    "person_id": 2,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.95,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 4.0,
+    "person_id": 3,
+    "activity": "running",
+    "confidence": 0.91,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 6.0,
+    "person_id": 1,
+    "activity": "loitering",
+    "confidence": 0.89,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 6.0,
+    "person_id": 4,
+    "activity": "crowd_formation",
+    "confidence": 0.85,
+    "suspicious": true,
+    "severity": "medium"
+  }
+]

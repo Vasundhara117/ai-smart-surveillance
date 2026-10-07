@@ -1,0 +1,41 @@
+==================================================
+MEMBER 2: ML MODEL EVALUATION REPORT
+==================================================
+Model: RandomForestClassifier (n_estimators=120, max_depth=12)
+Dataset Size: 1500 samples (75% Train, 25% Test)
+Accuracy: 100.00%
+Multiclass ROC-AUC (OvR): 1.0000
+
+--- Classification Report ---
+                           precision    recall  f1-score   support
+
+          crowd_formation       1.00      1.00      1.00        75
+                loitering       1.00      1.00      1.00        75
+                   normal       1.00      1.00      1.00        75
+restricted_area_intrusion       1.00      1.00      1.00        75
+                  running       1.00      1.00      1.00        75
+
+                 accuracy                           1.00       375
+                macro avg       1.00      1.00      1.00       375
+             weighted avg       1.00      1.00      1.00       375
+
+--- Confusion Matrix ---
+Classes: [np.str_('crowd_formation'), np.str_('loitering'), np.str_('normal'), np.str_('restricted_area_intrusion'), np.str_('running')]
+[[75  0  0  0  0]
+ [ 0 75  0  0  0]
+ [ 0  0 75  0  0]
+ [ 0  0  0 75  0]
+ [ 0  0  0  0 75]]
+
+--- Feature Importances ---
+  - instantaneous_speed      : 0.0683
+  - avg_speed                : 0.1106
+  - max_speed                : 0.0932
+  - acceleration             : 0.0305
+  - net_displacement         : 0.0764
+  - path_length              : 0.0072
+  - linearity                : 0.2221
+  - bounding_radius          : 0.0680
+  - dwell_time               : 0.0678
+  - dist_to_restricted       : 0.1459
+  - in_restricted_zone       : 0.1100

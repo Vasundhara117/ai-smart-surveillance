@@ -1,0 +1,178 @@
+[
+  {
+    "timestamp": 0.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.96,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 1.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.9,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 1.0,
+    "person_id": 2,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 2.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.92,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 2.0,
+    "person_id": 2,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.87,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 2.0,
+    "person_id": 2,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 3.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.94,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 3.0,
+    "person_id": 2,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.88,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 3.0,
+    "person_id": 2,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 4.0,
+    "person_id": 1,
+    "activity": "crowd_formation",
+    "confidence": 0.75,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 4.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.94,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 4.0,
+    "person_id": 2,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.9,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 4.0,
+    "person_id": 2,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 4.0,
+    "person_id": 3,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 5.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.95,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 5.0,
+    "person_id": 1,
+    "activity": "loitering",
+    "confidence": 0.7,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 5.0,
+    "person_id": 2,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.93,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 5.0,
+    "person_id": 2,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 5.0,
+    "person_id": 3,
+    "activity": "running",
+    "confidence": 0.99,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 6.0,
+    "person_id": 4,
+    "activity": "crowd_formation",
+    "confidence": 0.75,
+    "suspicious": true,
+    "severity": "medium"
+  },
+  {
+    "timestamp": 6.0,
+    "person_id": 1,
+    "activity": "restricted_area_intrusion",
+    "confidence": 0.96,
+    "suspicious": true,
+    "severity": "high"
+  },
+  {
+    "timestamp": 6.0,
+    "person_id": 1,
+    "activity": "loitering",
+    "confidence": 0.72,
+    "suspicious": true,
+    "severity": "medium"
+  }
+]
