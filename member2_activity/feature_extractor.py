@@ -7,8 +7,6 @@ from member2_activity.config import (
     RESTRICTED_ZONES,
     THRESHOLDS
 )
-
-
 def point_in_polygon(point: Tuple[float, float], polygon: List[List[float]]) -> bool:
     """Ray-casting algorithm to test if a 2D point (x, y) is inside a polygon."""
     x, y = point
@@ -27,7 +25,6 @@ def point_in_polygon(point: Tuple[float, float], polygon: List[List[float]]) -> 
         p1x, p1y = p2x, p2y
     return inside
 
-
 def min_dist_to_polygon(point: Tuple[float, float], polygon: List[List[float]]) -> float:
     """Calculates minimum distance from a point to polygon boundary or 0 if inside."""
     if point_in_polygon(point, polygon):
@@ -41,7 +38,6 @@ def min_dist_to_polygon(point: Tuple[float, float], polygon: List[List[float]]) 
         ax, ay = polygon[i]
         bx, by = polygon[(i + 1) % n]
 
-        # Line segment vector AB and point vector AP
         abx, aby = bx - ax, by - ay
         apx, apy = px - ax, py - ay
         ab_sq = abx**2 + aby**2
@@ -59,17 +55,13 @@ def min_dist_to_polygon(point: Tuple[float, float], polygon: List[List[float]]) 
 
     return min_dist
 
-
 class TrajectoryBuffer:
     """Stores rolling history of object detection bounding boxes and centroids."""
 
     def __init__(self, max_frames: int = BUFFER_MAX_FRAMES):
         self.max_frames = max_frames
-        # person_id -> deque of dict records: {'frame', 'timestamp', 'bbox', 'centroid'}
         self.history: Dict[int, deque] = defaultdict(lambda: deque(maxlen=self.max_frames))
-        # person_id -> timestamp when first detected in current continuous track
         self.track_start_time: Dict[int, float] = {}
-        # person_id -> dict of zone_name -> timestamp entered zone
         self.zone_entry_time: Dict[int, Dict[str, float]] = defaultdict(dict)
 
     def update(self, frame_num: int, timestamp: float, objects: List[Dict[str, Any]]):
@@ -99,7 +91,6 @@ class TrajectoryBuffer:
 
             self.history[person_id].append(record)
 
-            # Check zone entry/dwell times
             for zone in RESTRICTED_ZONES:
                 z_name = zone["name"]
                 polygon = zone["polygon"]
@@ -112,7 +103,6 @@ class TrajectoryBuffer:
                     if z_name in self.zone_entry_time[person_id]:
                         del self.zone_entry_time[person_id][z_name]
 
-        # Cleanup stale tracks no longer present (optional purging after timeout)
         stale_ids = [pid for pid in self.history if pid not in current_ids and (timestamp - self.history[pid][-1]["timestamp"]) > 10.0]
         for pid in stale_ids:
             del self.history[pid]
@@ -124,10 +114,8 @@ class TrajectoryBuffer:
     def get_track_history(self, person_id: int) -> List[Dict[str, Any]]:
         return list(self.history.get(person_id, []))
 
-
 class FeatureExtractor:
     """Extracts spatial, temporal, dynamic, and social/crowd feature representations."""
-
     def __init__(self, trajectory_buffer: TrajectoryBuffer):
         self.buffer = trajectory_buffer
 
@@ -139,7 +127,6 @@ class FeatureExtractor:
 
         centroids = [h["centroid"] for h in history]
         timestamps = [h["timestamp"] for h in history]
-
         total_dwell_time = current_timestamp - self.buffer.track_start_time.get(person_id, current_timestamp)
 
         if len(centroids) < 2:
@@ -159,38 +146,27 @@ class FeatureExtractor:
                 "in_restricted_zone": float(dist_to_restr == 0.0)
             }
 
-        # Calculate incremental displacements and speeds
         dt = np.diff(timestamps)
-        # Prevent division by zero
         dt = np.where(dt <= 0, 1.0 / DEFAULT_FPS, dt)
-
         coords = np.array(centroids)
         step_diffs = np.diff(coords, axis=0)
         step_dists = np.hypot(step_diffs[:, 0], step_diffs[:, 1])
-
         inst_speeds = step_dists / dt
         instantaneous_speed = float(inst_speeds[-1])
         max_speed = float(np.max(inst_speeds))
-
         total_path_length = float(np.sum(step_dists))
         total_time_span = float(timestamps[-1] - timestamps[0])
         avg_speed = total_path_length / total_time_span if total_time_span > 0 else 0.0
 
-        # Acceleration calculation over recent steps
         if len(inst_speeds) >= 2:
             acceleration = float((inst_speeds[-1] - inst_speeds[0]) / (timestamps[-1] - timestamps[1]))
         else:
             acceleration = 0.0
 
-        # Net displacement and Linearity Ratio
         net_disp = float(np.hypot(centroids[-1][0] - centroids[0][0], centroids[-1][1] - centroids[0][1]))
         linearity = net_disp / total_path_length if total_path_length > 0 else 1.0
-
-        # Bounding movement radius from centroid mean
         mean_center = np.mean(coords, axis=0)
         bounding_radius = float(np.max(np.hypot(coords[:, 0] - mean_center[0], coords[:, 1] - mean_center[1])))
-
-        # Distance to nearest restricted zone
         curr_cx, curr_cy = centroids[-1]
         dist_to_restr = min([min_dist_to_polygon((curr_cx, curr_cy), z["polygon"]) for z in RESTRICTED_ZONES]) if RESTRICTED_ZONES else 999.0
 
@@ -234,15 +210,10 @@ class FeatureExtractor:
                 "pairwise_distances": np.zeros((1, 1))
             }
 
-        # Pairwise distance matrix
         diff = coords_arr[:, np.newaxis, :] - coords_arr[np.newaxis, :, :]
         dist_matrix = np.hypot(diff[:, :, 0], diff[:, :, 1])
-
-        # Cluster detection based on distance threshold
         radius = THRESHOLDS["crowd_distance_radius_px"]
         adj_matrix = dist_matrix <= radius
-
-        # Graph connected components for cluster grouping
         visited = [False] * n
         clusters = []
 
