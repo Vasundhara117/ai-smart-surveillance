@@ -52,13 +52,23 @@ class AlertManager:
             if e.get("severity") in ["high", "critical"]
         ]
 
-    def get_latest_critical_alert(self) -> Tuple[bool, Dict[str, Any]]:
-        """Returns the most recent high or critical alert if available."""
+    
+    def get_latest_critical_alert(self):
         high_priority = self.get_high_priority_alerts()
+
         if high_priority:
-            sorted_alerts = sorted(high_priority, key=lambda x: x["timestamp"], reverse=True)
+            sorted_alerts = sorted(
+                high_priority,
+                key=lambda x: x.get(
+                    "start_timestamp",
+                    x.get("timestamp", 0)
+                ),
+                reverse=True
+            )
             return True, sorted_alerts[0]
+
         return False, {}
+
 
     @staticmethod
     def get_severity_badge_html(severity: str) -> str:

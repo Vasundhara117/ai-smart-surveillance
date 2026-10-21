@@ -14,6 +14,7 @@ class ObjectDetector:
         class_names: Sequence[str] | None = None,
         confidence_threshold: float = 0.25,
         device: str = "auto",
+        image_size: int = 512,
     ) -> None:
         try:
             from ultralytics import YOLO
@@ -26,6 +27,9 @@ class ObjectDetector:
         self.model = YOLO(model_path)
         self.confidence_threshold = confidence_threshold
         self.device = None if device == "auto" else device
+        if image_size <= 0:
+            raise ValueError("image_size must be positive")
+        self.image_size = image_size
         self.class_ids = self._resolve_classes(class_names)
 
     def _resolve_classes(self, class_names: Sequence[str] | None) -> list[int] | None:
@@ -54,6 +58,7 @@ class ObjectDetector:
             conf=self.confidence_threshold,
             classes=self.class_ids,
             device=self.device,
+            imgsz=self.image_size,
             verbose=False,
         )
         detections: list[Detection] = []

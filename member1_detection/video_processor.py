@@ -60,6 +60,12 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--device", default="auto", help="Inference device, e.g. auto, cpu, 0")
     parser.add_argument(
+        "--imgsz",
+        type=int,
+        default=512,
+        help="YOLO inference image size (default: 512)",
+    )
+    parser.add_argument(
         "--max-age", type=int, default=DEFAULT_MAX_AGE,
         help="Frames to retain a temporarily missed track",
     )
@@ -110,12 +116,16 @@ def process_video(args: argparse.Namespace) -> int:
         if not class_names:
             raise ValueError("--classes must contain at least one class name or 'all'")
 
+    if args.imgsz <= 0:
+        raise ValueError("--imgsz must be a positive integer")
+
     tracker = IoUTracker(max_age=args.max_age, min_iou=args.min_iou)
     detector = ObjectDetector(
         model_path=args.model,
         class_names=class_names,
         confidence_threshold=args.confidence,
         device=args.device,
+        image_size=args.imgsz,
     )
 
     capture = cv2.VideoCapture(str(input_path))

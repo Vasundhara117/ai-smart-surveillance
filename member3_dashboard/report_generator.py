@@ -27,7 +27,7 @@ class ReportGenerator:
                 "total_events": 0,
                 "suspicious_events": 0,
                 "most_common_activity": "N/A",
-                "most_frequent_person": "N/A",
+                "most_frequent_person_id": "N/A",
                 "high_risk_persons": []
             }
 
