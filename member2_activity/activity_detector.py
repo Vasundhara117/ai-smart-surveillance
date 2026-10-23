@@ -68,18 +68,39 @@ class ActivityDetector:
                 person_id, features, det_conf, timestamp
             )
             frame_events.extend(person_rule_events)
-
-            # Evaluate ML Classifier if in Hybrid mode or if rule engine did not trigger
-            if self.use_hybrid and self.classifier.is_trained() and not person_rule_events:
+            # Evaluate ML classifier if no rule-based event was triggered
+            if (
+                self.use_hybrid
+                and self.classifier.is_trained()
+                and not person_rule_events
+            ):
                 ml_result = self.classifier.predict(features)
+
                 if ml_result:
                     act_label, ml_conf = ml_result
-                    if act_label in ALLOWED_ACTIVITIES.values():
+
+                    # Validate the label before applying cooldown
+                    if (
+                        act_label in ALLOWED_ACTIVITIES.values()
+                        and self.rule_engine._should_emit(
+                            act_label,
+                            str(person_id),
+                            timestamp,
+                        )
+                    ):
                         # Determine severity based on feature intensity
                         severity = "medium"
-                        if features.get("dwell_time", 0) > 10.0 or features.get("max_speed", 0) > 220.0 or features.get("in_restricted_zone", 0) == 1.0:
+
+                        if (
+                            features.get("dwell_time", 0) > 10.0
+                            or features.get("max_speed", 0) > 220.0
+                            or features.get("in_restricted_zone", 0) == 1.0
+                        ):
                             severity = "high"
-                        elif features.get("dwell_time", 0) < 6.0 and features.get("max_speed", 0) < 160.0:
+                        elif (
+                            features.get("dwell_time", 0) < 6.0
+                            and features.get("max_speed", 0) < 160.0
+                        ):
                             severity = "low"
 
                         frame_events.append({
@@ -88,8 +109,9 @@ class ActivityDetector:
                             "activity": str(act_label),
                             "confidence": float(ml_conf),
                             "suspicious": True,
-                            "severity": str(severity)
+                            "severity": str(severity),
                         })
+
 
         # Validate output schema adherence and convert numpy types to native python types
         validated_events = []
